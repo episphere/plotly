@@ -2,18 +2,16 @@ console.log('epiPlotly.js loaded');
 
 (async function(){
 
-    /*
     loadScript=url=>new Promise(function(resolve, reject){
         let s = document.createElement('script')
         s.src=url
         s.onload=resolve
         document.head.appendChild(s)
     })
-    */
 
     if(typeof(Plotly)=="undefined"){
-        //await loadScript('https://cdn.plot.ly/plotly-latest.min.js')
-        const Plotly = await import('https://cdn.plot.ly/plotly-latest.min.js')
+        await loadScript('https://cdn.plot.ly/plotly-latest.min.js')
+        //const Plotly = import('https://cdn.plot.ly/plotly-latest.min.js')
     }
 
     class epiPlotly extends HTMLElement {
