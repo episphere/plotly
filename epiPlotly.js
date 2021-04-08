@@ -10,6 +10,8 @@ console.log('epiPlotly.js loaded');
     })
     
     /*
+
+    // Praful, either Plotly is missing something or I am :-D - whydoesn't this work?
     loadScript=async url=>{
         import(url)
     }
