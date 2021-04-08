@@ -17,10 +17,10 @@ console.log('epiPlotly.js loaded');
     class epiPlotly extends HTMLElement {
       connectedCallback(){
         if(this.textContent.length>0){this.plotDataURL=this.textContent}
-        this.innerHTML = `<p><hr>Hello world from epiPlotly at ${Date()}<hr>Plotly = ${typeof(Plotly)}</p>`;
+        this.plotDataURL=this.plotDataURL||'https://episphere.github.io/plot/demo.json'
+        this.innerHTML = `<a href="${this.plotDataURL}" target="_blank" style="font-size:small">${this.plotDataURL}</a><span style="font-size:xx-small"><br>${Date()}</span>` // `<p><hr>Hello world from epiPlotly at ${Date()}<hr>Plotly = ${typeof(Plotly)}</p>`;
         let div = document.createElement('div')
         this.appendChild(div)
-        this.plotDataURL=this.plotDataURL||'https://episphere.github.io/plot/demo.json'
         fetch(this.plotDataURL)
             .then(x=>x.json())
             .then(x=>Plotly.newPlot(div,x.traces,x.layout))
