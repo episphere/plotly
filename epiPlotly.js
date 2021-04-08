@@ -18,7 +18,7 @@ console.log('epiPlotly.js loaded');
       connectedCallback(){
         if(this.textContent.length>0){this.plotDataURL=this.textContent}
         this.plotDataURL=this.plotDataURL||'https://episphere.github.io/plot/demo.json'
-        this.innerHTML = `<a href="${this.plotDataURL}" target="_blank" style="font-size:small">${this.plotDataURL}</a><span style="font-size:xx-small"><br>${Date()}</span>` // `<p><hr>Hello world from epiPlotly at ${Date()}<hr>Plotly = ${typeof(Plotly)}</p>`;
+        this.innerHTML = `<a href="${this.plotDataURL}" target="_blank" style="font-size:x-small">${this.plotDataURL}</a><span style="font-size:xx-small"><br>${Date().slice(0,34)}</span>` // `<p><hr>Hello world from epiPlotly at ${Date()}<hr>Plotly = ${typeof(Plotly)}</p>`;
         let div = document.createElement('div')
         this.appendChild(div)
         fetch(this.plotDataURL)
