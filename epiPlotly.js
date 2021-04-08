@@ -16,6 +16,7 @@ console.log('epiPlotly.js loaded');
 
     class epiPlotly extends HTMLElement {
       connectedCallback(){
+        if(this.textContent.length>0){this.plotDataURL=this.textContent}
         this.innerHTML = `<p><hr>Hello world from epiPlotly at ${Date()}<hr>Plotly = ${typeof(Plotly)}</p>`;
         let div = document.createElement('div')
         this.appendChild(div)
@@ -25,7 +26,5 @@ console.log('epiPlotly.js loaded');
             .then(x=>Plotly.newPlot(div,x.traces,x.layout))
       }
     }
-
     customElements.define('epi-plotly', epiPlotly);
-
 })()
