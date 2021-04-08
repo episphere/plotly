@@ -27,4 +27,5 @@ console.log('epiPlotly.js loaded');
       }
     }
     customElements.define('epi-plotly', epiPlotly);
+    
 })()
