@@ -2,19 +2,13 @@ console.log('epiPlotly.js loaded');
 
 (async function(){
 
+    /*
     loadScript=url=>new Promise(function(resolve, reject){
         let s = document.createElement('script')
         s.src=url
         s.onload=resolve
         document.head.appendChild(s)
     })
-    
-    /*
-
-    // Praful, either Plotly is missing something or I am :-D - whydoesn't this work?
-    loadScript=async url=>{
-        import(url)
-    }
     */
 
     if(typeof(Plotly)=="undefined"){
