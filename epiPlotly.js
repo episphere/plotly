@@ -18,7 +18,8 @@ console.log('epiPlotly.js loaded');
     */
 
     if(typeof(Plotly)=="undefined"){
-        await loadScript('https://cdn.plot.ly/plotly-latest.min.js')
+        //await loadScript('https://cdn.plot.ly/plotly-latest.min.js')
+        const Plotly = await import('https://cdn.plot.ly/plotly-latest.min.js')
     }
 
     class epiPlotly extends HTMLElement {
