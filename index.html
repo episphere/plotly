@@ -16,7 +16,19 @@
     <epi-plotly>https://episphere.github.io/plot/demo1.json</epi-plotly>
     <p>As with regular HTML elements, you can also chose to provide additional parameters as attributes of the custom tag. Compare the plot below with the one above to discover what each configuration parameter is doing</p>
     <p><img src="configPlot.png" width=850em></p> 
-    <epi-plotly plotConfig="displaylogo:false;showLink:true;plotlyServerURL:https://chart-studio.plotly.com;editable:true">https://episphere.github.io/plot/demo1.json</epi-plotly>
+    <epi-plotly plotConfig="displaylogo:false;showLink:true;plotlyServerURL:https%3A//chart-studio.plotly.com;editable:true">https://episphere.github.io/plot/demo1.json</epi-plotly>
+    <p>For a less conventional approach, one can also pass the traces and layout directly in the tag's value<p>
+    <epi-plotly>{
+        traces:[
+            {
+                x:[...Array(1000)].map((_,i)=>i*0.1),
+                y:[...Array(1000)].map((_,i)=>(Math.sin(i*0.01)+Math.random()/2)),
+                mode:'markers',
+                marker: { size: 2 }
+            }
+        ]
+    }
+    </epi-plotly>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

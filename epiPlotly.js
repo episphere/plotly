@@ -22,21 +22,26 @@ console.log('epiPlotly.js loaded');
         let div = document.createElement('div')
         this.appendChild(div)
         let that = this
-        fetch(this.plotDataURL)
-            .then(x=>x.json())
-            .then(x=>{
-                x.plotConfig=x.plotConfig||{}
-                if(that.attributes.plotconfig){
-                    let att = that.attributes.plotconfig.value.split(';').map(xi=>{
-                        let atti = xi.split(':')
-                        if(atti[1]==='false'){atti[1]=false}
-                        if(atti[1]==='true'){atti[1]=true}
-                        x.plotConfig[atti[0]]=atti[1]
-                    })
-                }
-                Plotly.newPlot(div,x.traces,x.layout,x.plotConfig)
-
-            })
+        let doPlot=(x)=>{
+            x.plotConfig=x.plotConfig||{}
+            if(that.attributes.plotconfig){
+                let att = that.attributes.plotconfig.value.split(';').map(xi=>{
+                    let atti = xi.split(':')
+                    if(atti[1]==='false'){atti[1]=false}
+                    if(atti[1]==='true'){atti[1]=true}
+                    x.plotConfig[atti[0]]=atti[1]
+                })
+            }
+            Plotly.newPlot(div,x.traces,x.layout,x.plotConfig)
+        }
+        if(this.plotDataURL.match(/^\s*http/)){
+            fetch(this.plotDataURL).then(x=>x.json()).then(x=>doPlot(x))
+        }else{
+            this.querySelector('a').remove()
+            let x
+            eval('x='+this.plotDataURL)
+            doPlot(x)
+        }
       }
     }
     customElements.define('epi-plotly', epiPlotly);
