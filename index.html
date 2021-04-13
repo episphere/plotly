@@ -8,12 +8,14 @@
     <h2>epiPlotly custom element</h2>
     <p>The plot below is assembled within a custom <code>&lt;epi-plotly&gt;</code> <a href="https://github.com/episphere/plotly" target="_blank">|&nearr;|</a> element, loaded from <a href="https://episphere.github.io/plotly/epiPlotly.js" target="_blank">episphere.github.io/plotly/epiPlotly.js</a>.</p>
     <p>The two plots below are assembled by using this custom element just like you would any html tag, with the url to the plot data as it's content.</p>
-    <img src="snapShotTags.png" width=500em>
+    <p><img src="snapShotTags.png" width=700em></p>
     <p>Also like regular HTML elements, custon elements can be manipulated by JS directly in the DOM. Note in this example how the data url can be assigned to the specific element attribute where it is kept:</p>
-    <img src="jsTag.png" width=400em>
+    <img src="jsTag.png" width=550em>
     <hr>
     <epi-plotly>https://episphere.github.io/plot/demo.json</epi-plotly>
     <epi-plotly>https://episphere.github.io/plot/demo1.json</epi-plotly>
+    <p>As with regular HTML elements, you can also chose to provide additional parameters as attributes of the custom tag. Compare the plot below with the one above to discover what each configuration parameter is doing</p>
+    <p><img src="configPlot.png" width=850em></p> 
     <epi-plotly plotConfig="displaylogo:false;showLink:true;plotlyServerURL:https://chart-studio.plotly.com;editable:true">https://episphere.github.io/plot/demo1.json</epi-plotly>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
