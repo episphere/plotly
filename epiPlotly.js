@@ -21,9 +21,22 @@ console.log('epiPlotly.js loaded');
         this.innerHTML = `<a href="${this.plotDataURL}" target="_blank" style="font-size:x-small">${this.plotDataURL}</a><span style="font-size:xx-small"><br>${Date().slice(0,34)}</span>` // `<p><hr>Hello world from epiPlotly at ${Date()}<hr>Plotly = ${typeof(Plotly)}</p>`;
         let div = document.createElement('div')
         this.appendChild(div)
+        let that = this
         fetch(this.plotDataURL)
             .then(x=>x.json())
-            .then(x=>Plotly.newPlot(div,x.traces,x.layout))
+            .then(x=>{
+                x.plotConfig=x.plotConfig||{}
+                if(that.attributes.plotconfig){
+                    let att = that.attributes.plotconfig.value.split(';').map(xi=>{
+                        let atti = xi.split(':')
+                        if(atti[1]==='false'){atti[1]=false}
+                        if(atti[1]==='true'){atti[1]=true}
+                        x.plotConfig[atti[0]]=atti[1]
+                    })
+                }
+                Plotly.newPlot(div,x.traces,x.layout,x.plotConfig)
+
+            })
       }
     }
     customElements.define('epi-plotly', epiPlotly);
