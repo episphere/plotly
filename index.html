@@ -6,7 +6,8 @@
 </head>
 <body class="container">
     <h2>epiPlotly custom element</h2>
-    <p>The plot below is assembled within a custom <code>&lt;epi-plotly&gt;</code> <a href="https://github.com/episphere/plotly" target="_blank">|&nearr;|</a> element, loaded from <a href="https://episphere.github.io/plotly/epiPlotly.js" target="_blank">episphere.github.io/plotly/epiPlotly.js</a>.</p>
+    <p>The plots below are assembled within a custom <code>&lt;epi-plotly&gt;</code> <a href="https://github.com/episphere/plotly" target="_blank">|&nearr;|</a> element, provided you preloaded it from <a href="https://episphere.github.io/plotly/epiPlotly.js" target="_blank">episphere.github.io/plotly/epiPlotly.js</a>:</p>
+    <p><pre id="scriptTag" style="color:darkgreen"></pre></p>
     <p>The two plots below are assembled by using this custom element just like you would any html tag, with the url to the plot data as it's content.</p>
     <p><img src="snapShotTags.png" width=700em></p>
     <p>Also like regular HTML elements, custon elements can be manipulated by JS directly in the DOM. Note in this example how the data url can be assigned to the specific element attribute where it is kept:</p>
@@ -33,5 +34,11 @@
     }
     </epi-plotly>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script>
+        setTimeout(_=>{
+            //scriptTag.innerText='<head>\n   <script src="https://episphere.github.io/plotly/epiPlotly.js\"\>\<\/script>\n</head>'
+            scriptTag.innerText='<script src="https://episphere.github.io/plotly/epiPlotly.js\"\>\<\/script>'
+        },0)
+    </script>
 </body>
 </html>
