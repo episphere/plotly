@@ -18,7 +18,9 @@ console.log('epiPlotly.js loaded');
       connectedCallback(){
         if(this.textContent.length>0){this.plotDataURL=this.textContent}
         this.plotDataURL=this.plotDataURL||'https://episphere.github.io/plot/demo.json'
-        this.innerHTML = `<a href="${this.plotDataURL}" target="_blank" style="font-size:x-small">${this.plotDataURL}</a><span style="font-size:xx-small"><br>${Date().slice(0,34)}</span>` // `<p><hr>Hello world from epiPlotly at ${Date()}<hr>Plotly = ${typeof(Plotly)}</p>`;
+        if(this.plotDataURL.match(/^\s*http/)){
+            this.innerHTML = `<a href="${this.plotDataURL}" target="_blank" style="font-size:x-small">${this.plotDataURL}</a><span style="font-size:xx-small"><br>${Date().slice(0,34)}</span>` // `<p><hr>Hello world from epiPlotly at ${Date()}<hr>Plotly = ${typeof(Plotly)}</p>`;
+        }
         let div = document.createElement('div')
         this.appendChild(div)
         let that = this
@@ -37,10 +39,16 @@ console.log('epiPlotly.js loaded');
         if(this.plotDataURL.match(/^\s*http/)){
             fetch(this.plotDataURL).then(x=>x.json()).then(x=>doPlot(x))
         }else{
-            this.querySelector('a').remove()
-            let x
-            eval('x='+this.plotDataURL)
-            doPlot(x)
+            if(!this.innerHTML.match(/^\s*</)){
+                //this.querySelector('a').remove()
+                let div = this.children[0]
+                this.innerText=''
+                this.appendChild(div)
+                let x
+                eval('x='+this.plotDataURL)
+                doPlot(x)
+            }
+                
         }
       }
     }
