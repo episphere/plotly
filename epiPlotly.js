@@ -52,6 +52,10 @@ console.log('epiPlotly.js loaded');
         }
       }
     }
-    customElements.define('epi-plotly', epiPlotly);
-    
+    try{
+        customElements.define('epi-plotly', epiPlotly);
+        console.log('epiPlotly custo element loaded')
+    }catch(err){
+        console.log('repeat epiPlotly defenition, ignored',err)
+    }
 })()
